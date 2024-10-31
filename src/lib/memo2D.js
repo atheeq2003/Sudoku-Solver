@@ -1,8 +1,6 @@
 export default class Memo2D {
   store = new Map();
 
-  checkIfIn = (pos, value) => this.store.get(pos) && this.store.get(pos).get(value)
-
   setVal = (row, column, value) => {
     if (this.store.get(row)) {
       if (value && this.store.get(row.get(column))) {
@@ -15,5 +13,9 @@ export default class Memo2D {
 
     this.store.set(row, new Map([[column, value]]));
     return true;
+  };
+
+  checkIfIn = (pos, value) => {
+    this.store.get(pos) && this.store.get(pos).get(value);
   };
 }
