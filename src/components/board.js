@@ -17,7 +17,7 @@ export default class Board {
     const { innerText: value, id } = element;
     const [x, y] = id.split("-");
 
-    if (value.length !== 0 && !/^[0-9]$/.test(value)) {
+    if (value.length !== 0 && !/^[1-9]$/.test(value)) {
       this.setCellValue(x, y, "");
       return;
     }
