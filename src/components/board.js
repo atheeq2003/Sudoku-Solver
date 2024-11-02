@@ -24,17 +24,22 @@ export default class Board {
   };
 
   handleInputFromArray = (value) => {
+    const trimmedValue = value.trim();
+    console.log("Received JSON for Parsing:", trimmedValue);
+
     try {
-      const array = JSON.parse(value);
-      array.forEach((row, i) =>
-        row.forEach((cell, j) =>
-          this.setCellValue(i, j, cell === "." ? "" : +cell)
-        )
-      );
-    } catch (_err) {
-      alert("Incorrect array");
+        const array = JSON.parse(trimmedValue);
+        console.log("Parsed Array:", array); // Log parsed array to confirm success
+
+        // Ensure it sets the board values
+        array.forEach((row, i) => row.forEach(
+            (cell, j) => this.setCellValue(i, j, cell === '.' ? '' : +cell),
+        ));
+    } catch (err) {
+        console.error("Parsing Error:", err); // Full error for debugging
+        alert(`Incorrect array format: ${err.message}`);
     }
-  };
+}
 
   render = () => {
     for (let i = 0; i < 9; i += 1) {

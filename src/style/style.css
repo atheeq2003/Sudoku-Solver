@@ -7,28 +7,32 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #fff;
-  color: #333;
+  background-color: #121212; /* Dark background */
+  color: #e0e0e0; /* Light text color */
   line-height: 1.6;
 }
 
 h1, h2 {
   font-weight: 300;
   line-height: 1.2;
+  color: #ffffff; /* White color for headings */
 }
 
 header {
   position: fixed;
   width: 100%;
   padding: 0.7rem;
-  color: #737373;
-  box-shadow: 0 5px 6px -6px #d3d3d3;
+  color: #bbb; /* Slightly lighter color for header */
+  box-shadow: 0 5px 6px -6px #000; /* Darker shadow */
 }
 
 input, textarea, button {
   padding: 0.5rem;
   flex-grow: 1;
   max-width: 349px;
+  background-color: #333; /* Darker input background */
+  color: #e0e0e0; /* Light text color in inputs */
+  border: 1px solid #555; /* Border color */
 }
 
 textarea {
@@ -51,8 +55,8 @@ textarea {
   align-items: center;
   padding: 3rem 5rem;
   margin-bottom: 5rem;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  background-color: #1e1e1e; /* Dark card background */
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 3px 5px; /* Darker shadow */
 }
 
 .input-wrapper {
@@ -62,14 +66,13 @@ textarea {
 .input-wrapper label {
   display: block;
   margin-bottom: 3px;
-  color: #333;
+  color: #e0e0e0; /* Light color for labels */
 }
 
 .input-wrapper input,
 .input-wrapper textarea {
   padding: 7px;
   width: 100%;
-  border: 1px solid #ccc;
   border-radius: 3px;
 }
 

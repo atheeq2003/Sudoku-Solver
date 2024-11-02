@@ -1,32 +1,55 @@
 /* Text colors */
 .text-primary {
-    color: #28a745;
-  }
-  
-  .text-secondary {
-    color: #0284d0;
-  }
-  
-  /* Fonts */
-  .font-normal {
-    font-weight: 400;
-  }
-  
-  /* Button */
-  .btn {
-    cursor: pointer;
-    display: inline-block;
-    padding: 7px;
-    color: #fff;
-    background-color: #49c1a2;
-    border: none;
-    border-radius: 3px;
-  }
-  
-  .btn:hover {
-    opacity: 0.9;
-  }
-  
-  .btn:disabled {
-    background-color: gray;
-  }
+  color: #49c1a2; /* Light green for primary text */
+}
+
+.text-secondary {
+  color: #00b0ff; /* Light blue for secondary text */
+}
+
+/* Fonts */
+.font-normal {
+  font-weight: 400;
+}
+
+/* Button */
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 7px;
+  color: #fff;
+  background-color: #49c1a2; /* Button background color */
+  border: none;
+  border-radius: 3px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn:disabled {
+  background-color: gray;
+}
+
+/* General dropdown styling */
+select {
+  padding: 0.5rem 2rem 0.5rem 0.5rem; /* Add extra padding to the right */
+  border: 1px solid #49c1a2; /* Border color */
+  border-radius: 3px; /* Rounded corners */
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Text color */
+  font-size: 14px; /* Reduced font size for dropdown text */
+  cursor: pointer; /* Pointer on hover */
+  outline: none; /* Remove outline */
+}
+
+/* Style for the select element to enhance its appearance */
+select {
+  -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+  -moz-appearance: none; /* Remove default styling in Firefox */
+  appearance: none; /* Remove default styling */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="%23fff" viewBox="0 0 16 16"><path d="M1 5h14L8 11 1 5z"/></svg>'); /* Custom smaller dropdown arrow */
+  background-repeat: no-repeat; /* Prevent repeat */
+  background-position: right 10px center; /* Position the arrow */
+}
+
