@@ -3,6 +3,7 @@ import './style/style.css';
 import './style/util.css';
 import './index.js';
 
+
 // Set up Sudoku Solver functionality
 document.querySelector('#app').innerHTML = `
   <main>
@@ -55,14 +56,3 @@ document.querySelector('#app').innerHTML = `
     </div>
   </main>
 `;
-
-// Add event listeners for button functionality
-document.getElementById('solve').addEventListener('click', () => {
-    console.log('Solve button clicked');
-    // Add your Sudoku solving logic here
-});
-
-document.getElementById('addArrayButton').addEventListener('click', () => {
-    console.log('Add Array button clicked');
-    // Add your code to initialize Sudoku board from array input here
-});
