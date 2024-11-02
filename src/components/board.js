@@ -23,7 +23,7 @@ export default class Board {
     }
   };
 
-  handleInputFromArray = (value) => {
+  handleInputFromPreset = (value) => {
     const trimmedValue = value.trim();
     console.log("Received JSON for Parsing:", trimmedValue);
 

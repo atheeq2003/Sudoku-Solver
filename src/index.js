@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Loading Preset Board:", selectedValue);
 
             if (selectedValue) {
-                board.handleInputFromArray(selectedValue);
+                board.handleInputFromPreset(selectedValue);
             } else {
                 alert("Please select a valid preset board.");
             }
