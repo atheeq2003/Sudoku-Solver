@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (loadBoardButton && presetBoards) {
         loadBoardButton.addEventListener('click', () => {
             const selectedValue = presetBoards.value;
-
             console.log("Loading Preset Board:", selectedValue);
 
             if (selectedValue) {
