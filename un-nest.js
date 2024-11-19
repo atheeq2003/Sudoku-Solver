@@ -11,4 +11,4 @@ function unNest(arr) {
     return unNest(firstElement);
 }
 
-console.log(unNest([[[[[[[{foo: "bar", fizz: "buzz"}]]]]]]]));
+console.log(unNest([[[[[[[{username : "atheeq_03"}]]]]]]]));
