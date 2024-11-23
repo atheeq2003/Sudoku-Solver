@@ -1,29 +1,53 @@
 import "./board.css";
-import Memo2D from '../lib/memo2D';
-import { getSector } from '../utils/utils';
+import Memo2D from "../lib/memo2D";
+import { getSector } from "../utils/utils";
 
 export default class Board {
-  prev = null
+  prev = null;
 
   board = new Array(9);
 
-  speed = 10
+  speed = 10;
 
-  row = null
+  row = null;
 
-  column = null
+  column = null;
 
-  sector = null
+  sector = null;
 
-  solved = false
+  solved = false;
 
-  setCellValue = (row, column, value) => {
+  setCellValue = (row, column, value, visualizeMode = true) => {
     const cell = this.board[row][column];
 
     cell.value = value;
     if (+cell.$el.innerText !== value) {
       cell.$el.innerText = value;
     }
+
+    if (visualizeMode) {
+      if (this.prev) {
+        this.prev.classList.remove("current");
+      }
+      cell.$el.classList.add("current");
+      this.prev = cell.$el;
+    }
+  };
+
+  setUpMemo = () => {
+    this.board.forEach((boardRow, i) =>
+      boardRow.forEach((cell, j) => {
+        if (cell.value !== "") {
+          if (
+            !this.row.setVal(i, cell.value, true) ||
+            !this.column.setVal(j, cell.value, true) ||
+            !this.sector.setVal(getSector(i, j), cell.value, true)
+          ) {
+            throw new Error("Incorrect board");
+          }
+        }
+      })
+    );
   };
 
   createNewMemo = () => {
@@ -38,21 +62,21 @@ export default class Board {
       alert(e.message);
       return false;
     }
-  }
+  };
 
   setUpBeforeAndSolve = async (event) => {
     this.solved = false;
 
-    if(this.createNewMemo()) {
-      event.target.setAttribute('disabled', true);
+    if (this.createNewMemo()) {
+      event.target.setAttribute("disabled", true);
       await this.solveBoard();
-      event.target.removeAttribute('disabled');
+      event.target.removeAttribute("disabled");
 
-      if(!this.solved) {
-        alert('Board not solvable');
+      if (!this.solved) {
+        alert("Board not solvable");
       }
     }
-  }
+  };
 
   handleInput = (event) => {
     const { target: element } = event;
@@ -60,9 +84,10 @@ export default class Board {
     const [x, y] = id.split("-");
 
     if (value.length !== 0 && !/^[1-9]$/.test(value)) {
-      this.setCellValue(x, y, "");
+      this.setCellValue(x, y, "", false);
       return;
     }
+    this.setCellValue(x, y, value.length === 0 ? '' : +value, false);
   };
 
   handleInputFromPreset = (value) => {
@@ -70,18 +95,20 @@ export default class Board {
     console.log("Received JSON for Parsing:", trimmedValue);
 
     try {
-        const array = JSON.parse(trimmedValue);
-        console.log("Parsed Array:", array); // Log parsed array to confirm success
+      const array = JSON.parse(trimmedValue);
+      console.log("Parsed Array:", array); // Log parsed array to confirm success
 
-        // Ensure it sets the board values
-        array.forEach((row, i) => row.forEach(
-            (cell, j) => this.setCellValue(i, j, cell === '.' ? '' : +cell),
-        ));
+      // Ensure it sets the board values
+      array.forEach((row, i) =>
+        row.forEach((cell, j) =>
+          this.setCellValue(i, j, cell === "." ? "" : +cell, false)
+        )
+      );
     } catch (err) {
-        console.error("Parsing Error:", err); // Full error for debugging
-        alert(`Incorrect array format: ${err.message}`);
+      console.error("Parsing Error:", err); // Full error for debugging
+      alert(`Incorrect array format: ${err.message}`);
     }
-}
+  };
 
   render = () => {
     for (let i = 0; i < 9; i += 1) {
