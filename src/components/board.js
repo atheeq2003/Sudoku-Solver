@@ -26,6 +26,20 @@ export default class Board {
     }
   };
 
+  setUpBeforeAndSolve = async (event) => {
+    this.solved = false;
+
+    if(this.createNewMemo()) {
+      event.target.setAttribute('disabled', true);
+      await this.solveBoard();
+      event.target.removeAttribute('disabled');
+
+      if(!this.solved) {
+        alert('Board not solvable');
+      }
+    }
+  }
+
   handleInput = (event) => {
     const { target: element } = event;
     const { innerText: value, id } = element;
