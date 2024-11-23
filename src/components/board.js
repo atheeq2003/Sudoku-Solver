@@ -1,7 +1,21 @@
 import "./board.css";
+import Memo2D from '../lib/memo2D';
+import { getSector } from '../utils/utils';
 
 export default class Board {
+  prev = null
+
   board = new Array(9);
+
+  speed = 10
+
+  row = null
+
+  column = null
+
+  sector = null
+
+  solved = false
 
   setCellValue = (row, column, value) => {
     const cell = this.board[row][column];
