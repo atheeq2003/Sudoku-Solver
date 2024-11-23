@@ -83,6 +83,32 @@ textarea {
   cursor: pointer;
 }
 
+
+.dropdown-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+#presetBoards {
+  margin-right: 8px;
+}
+
+.mini-button {
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  font-size: medium;
+}
+
+
+
 @media(max-width:766px) {
   .card {
     box-shadow: none;

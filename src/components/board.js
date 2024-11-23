@@ -17,11 +17,24 @@ export default class Board {
 
   solved = false;
 
+  constructor() {
+    this.initializeEmptyBoard(); // Initialize board during class instantiation
+  }
+
   clearAllCellClasses = () => {
     this.board.forEach((row) => row.forEach(({ $el }) => {
       $el.className = '';
     }));
   }
+
+  initializeEmptyBoard = () => {
+    this.board.forEach((row, i) => {
+      row.forEach((cell, j) => {
+        this.setCellValue(i, j, "", false); // Clear cell values
+      });
+    });
+    this.cleanUp(); // Reset board state
+  };
 
   setUpMemo = () => {
     this.board.forEach((boardRow, i) => boardRow.forEach((cell, j) => {
@@ -112,6 +125,49 @@ export default class Board {
     }, this.speed);
   })
 
+  solveBoardInstantly = (row = 0, column = 0) => {
+    const [x, y] = this.getFirstUnsolved(row, column);
+
+    // Base case: If no cells are left to solve
+    if (x === false) {
+      this.solved = true;
+      return true;
+    }
+
+    // Get the sector
+    const sector = getSector(x, y);
+
+    // Try all numbers from 1 to 9
+    for (let i = 1; i <= 9; i++) {
+      if (
+        !this.row.checkIfIn(x, i) &&
+        !this.column.checkIfIn(y, i) &&
+        !this.sector.checkIfIn(sector, i)
+      ) {
+        // Set the value
+        this.row.setVal(x, i, true);
+        this.column.setVal(y, i, true);
+        this.sector.setVal(sector, i, true);
+        this.setCellValue(x, y, i); // Update board UI
+
+        // Recursive call to solve the rest of the board
+        if (this.solveBoardInstantly(x, y)) {
+          return true;
+        }
+
+        // Backtrack: Reset the value if it doesn't lead to a solution
+        this.row.setVal(x, i, false);
+        this.column.setVal(y, i, false);
+        this.sector.setVal(sector, i, false);
+        this.setCellValue(x, y, ""); // Reset UI cell
+      }
+    }
+
+    // Return false if no solution is found
+    return false;
+  };
+
+
   solveBoard = async (row = 0, column = 0) => {
     // Step 1: Base case
     const [x, y] = this.getFirstUnsolved(row, column);
@@ -137,12 +193,6 @@ export default class Board {
 
     // Step 3: Return result
     return solved;
-  }
-
-  cleanUp = () => {
-    this.solved = false;
-    this.prev = null;
-    this.clearAllCellClasses();
   }
 
   setUpBeforeAndSolve = async ({ target }) => {
@@ -229,5 +279,10 @@ export default class Board {
       table.appendChild(tr);
     }
     return table;
+  };
+  cleanUp = () => {
+    this.solved = false;
+    this.prev = null;
+    this.clearAllCellClasses();
   };
 }
