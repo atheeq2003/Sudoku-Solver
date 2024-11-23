@@ -26,6 +26,20 @@ export default class Board {
     }
   };
 
+  createNewMemo = () => {
+    this.row = new Memo2D();
+    this.column = new Memo2D();
+    this.sector = new Memo2D();
+
+    try {
+      this.setUpMemo();
+      return true;
+    } catch (e) {
+      alert(e.message);
+      return false;
+    }
+  }
+
   setUpBeforeAndSolve = async (event) => {
     this.solved = false;
 
