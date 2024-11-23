@@ -64,6 +64,17 @@ export default class Board {
     }
   };
 
+  getFirstUnsolved = (row, column) => {
+    for(let i = row; i < 9; i += 1) {
+      for(let j = i === row ? column : 0; j < 9; j += 1) {
+        if(this.board[i][j]. value === '') {
+          return [i, j];  
+        }
+      }
+    }
+    return [false, false];
+  }
+
   solveBoard = async (row = 0, column = 0) => {
     const [x, y] = this.getFirstUnsolved(row, column);
     if (x === false && y === false) {
