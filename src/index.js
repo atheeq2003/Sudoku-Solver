@@ -72,7 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Button event listeners
     const loadBoardButton = document.querySelector('#loadBoardButton');
     const presetBoards = document.querySelector('#presetBoards');
+    const solveButton = document.querySelector('#solve');
+    document.querySelector('#speed').addEventListener('input', board.handleSpeedInput);
 
+    // Load preset board event listener
     if (loadBoardButton && presetBoards) {
         loadBoardButton.addEventListener('click', () => {
             const selectedValue = presetBoards.value;
@@ -86,5 +89,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     } else {
         console.error("Load Board button or Dropdown element not found.");
+    }
+
+    // Solve button event listener
+    if (solveButton) {
+        solveButton.addEventListener('click', (event) => {
+            console.log("Solve button clicked.");
+            board.setUpBeforeAndSolve(event);
+        });
+    } else {
+        console.error("Solve button not found.");
     }
 });

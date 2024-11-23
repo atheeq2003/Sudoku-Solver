@@ -17,38 +17,23 @@ export default class Board {
 
   solved = false;
 
-  setCellValue = (row, column, value, visualizeMode = true) => {
-    const cell = this.board[row][column];
-
-    cell.value = value;
-    if (+cell.$el.innerText !== value) {
-      cell.$el.innerText = value;
-    }
-
-    if (visualizeMode) {
-      if (this.prev) {
-        this.prev.classList.remove("current");
-      }
-      cell.$el.classList.add("current");
-      this.prev = cell.$el;
-    }
-  };
+  clearAllCellClasses = () => {
+    this.board.forEach((row) => row.forEach(({ $el }) => {
+      $el.className = '';
+    }));
+  }
 
   setUpMemo = () => {
-    this.board.forEach((boardRow, i) =>
-      boardRow.forEach((cell, j) => {
-        if (cell.value !== "") {
-          if (
-            !this.row.setVal(i, cell.value, true) ||
-            !this.column.setVal(j, cell.value, true) ||
-            !this.sector.setVal(getSector(i, j), cell.value, true)
-          ) {
-            throw new Error("Incorrect board");
-          }
+    this.board.forEach((boardRow, i) => boardRow.forEach((cell, j) => {
+      if (cell.value !== '') {
+        if (!this.row.setVal(i, cell.value, true)
+              || !this.column.setVal(j, cell.value, true)
+            || !this.sector.setVal(getSector(i, j), cell.value, true)) {
+          throw new Error('Incorrect board');
         }
-      })
-    );
-  };
+      }
+    }));
+  }
 
   createNewMemo = () => {
     this.row = new Memo2D();
@@ -65,54 +50,119 @@ export default class Board {
   };
 
   getFirstUnsolved = (row, column) => {
-    for(let i = row; i < 9; i += 1) {
-      for(let j = i === row ? column : 0; j < 9; j += 1) {
-        if(this.board[i][j]. value === '') {
-          return [i, j];  
+    for (let i = row; i < 9; i += 1) {
+      for (let j = i === row ? column : 0; j < 9; j += 1) {
+        const { value } = this.board[i][j];
+        if (value === '') {
+          return [i, j];
         }
       }
     }
     return [false, false];
   }
 
+  updateClassList = (currentCell, prevCell, solvedOrFault) => {
+    if (prevCell) {
+      prevCell.className = solvedOrFault;
+      if (solvedOrFault === 'fault') {
+        setTimeout(() => {
+          prevCell.classList.remove(solvedOrFault);
+        }, this.speed / 2);
+      }
+    }
+    currentCell.className = 'current';
+  }
+
+  setCellValue = (row, column, value, solvedOrFault = null) => {
+    // Step 1: Get the cell
+    const cell = this.board[row][column];
+
+    // Step 2: Set the value
+    cell.value = value;
+    if (+cell.$el.innerText !== value) {
+      cell.$el.innerText = value;
+    }
+
+    // Step 3: Visualization steps if required
+    if (solvedOrFault) {
+      this.updateClassList(cell.$el, this.prev, solvedOrFault);
+      this.prev = cell.$el;
+    }
+  }
+
+  tryOne = (row, column, sector, num) => new Promise((resolve) => {
+    // Set Data
+    this.row.setVal(row, num, true);
+    this.column.setVal(column, num, true);
+    this.sector.setVal(sector, num, true);
+    this.setCellValue(row, column, num, 'solved');
+
+    // For visualizing it
+    setTimeout(() => {
+      this.solveBoard(row, column).then((res) => {
+        if (!res) {
+          // Unset Data
+          this.row.setVal(row, num, false);
+          this.column.setVal(column, num, false);
+          this.sector.setVal(sector, num, false);
+          this.setCellValue(row, column, '', 'fault');
+        }
+        resolve(res);
+      });
+    }, this.speed);
+  })
+
   solveBoard = async (row = 0, column = 0) => {
+    // Step 1: Base case
     const [x, y] = this.getFirstUnsolved(row, column);
-    if (x === false && y === false) {
+    if (x === false) {
+      this.solved = true;
       return true;
     }
 
+    // Step 2: Solve
     const s = getSector(x, y);
     let solved = false;
     for (let i = 1; i <= 9; i += 1) {
-      if (
-        !this.row.checkIfIn(x, i) &&
-        !this.column.checkIfIn(y, i) &&
-        !this.sector.checkIfIn(s, i)
-      ) {
+      if (!this.row.checkIfIn(x, i)
+      && !this.column.checkIfIn(y, i)
+      && !this.sector.checkIfIn(s, i)) {
         solved = await this.tryOne(x, y, s, i);
       }
 
-      if(solved) {
-        this.solved = true;
+      if (solved) {
         break;
       }
     }
+
+    // Step 3: Return result
     return solved;
-  };
+  }
 
-  setUpBeforeAndSolve = async (event) => {
+  cleanUp = () => {
     this.solved = false;
+    this.prev = null;
+    this.clearAllCellClasses();
+  }
 
+  setUpBeforeAndSolve = async ({ target }) => {
+    // Clean up board in case we are solving again
+    this.cleanUp();
+
+    // Set memo and solve board
     if (this.createNewMemo()) {
-      event.target.setAttribute("disabled", true);
+      target.setAttribute('disabled', true);
       await this.solveBoard();
-      event.target.removeAttribute("disabled");
+      target.removeAttribute('disabled');
 
+      // Check if board was successfully solved
       if (!this.solved) {
-        alert("Board not solvable");
+        alert('Board not solvable');
+      } else {
+        alert('Solved');
       }
     }
-  };
+  }
 
   handleInput = (event) => {
     const { target: element } = event;
@@ -125,6 +175,12 @@ export default class Board {
     }
     this.setCellValue(x, y, value.length === 0 ? "" : +value, false);
   };
+
+  
+  handleSpeedInput = ({ target: { value } }) => {
+    // Step 1: Set the value
+    this.speed = +value;
+  }
 
   handleInputFromPreset = (value) => {
     const trimmedValue = value.trim();
