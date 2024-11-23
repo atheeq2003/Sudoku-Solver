@@ -64,6 +64,31 @@ export default class Board {
     }
   };
 
+  solveBoard = async (row = 0, column = 0) => {
+    const [x, y] = this.getFirstUnsolved(row, column);
+    if (x === false && y === false) {
+      return true;
+    }
+
+    const s = getSector(x, y);
+    let solved = false;
+    for (let i = 1; i <= 9; i += 1) {
+      if (
+        !this.row.checkIfIn(x, i) &&
+        !this.column.checkIfIn(y, i) &&
+        !this.sector.checkIfIn(s, i)
+      ) {
+        solved = await this.tryOne(x, y, s, i);
+      }
+
+      if(solved) {
+        this.solved = true;
+        break;
+      }
+    }
+    return solved;
+  };
+
   setUpBeforeAndSolve = async (event) => {
     this.solved = false;
 
@@ -87,7 +112,7 @@ export default class Board {
       this.setCellValue(x, y, "", false);
       return;
     }
-    this.setCellValue(x, y, value.length === 0 ? '' : +value, false);
+    this.setCellValue(x, y, value.length === 0 ? "" : +value, false);
   };
 
   handleInputFromPreset = (value) => {
