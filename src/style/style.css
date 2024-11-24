@@ -6,13 +6,14 @@
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-color: #121212; /* Dark background */
   color: #e0e0e0; /* Light text color */
   line-height: 1.6;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: 300;
   line-height: 1.2;
   color: #ffffff; /* White color for headings */
@@ -26,7 +27,9 @@ header {
   box-shadow: 0 5px 6px -6px #000; /* Darker shadow */
 }
 
-input, textarea, button {
+input,
+textarea,
+button {
   padding: 0.5rem;
   flex-grow: 1;
   max-width: 349px;
@@ -83,7 +86,6 @@ textarea {
   cursor: pointer;
 }
 
-
 .dropdown-wrapper {
   display: flex;
   align-items: center;
@@ -107,9 +109,7 @@ textarea {
   font-size: medium;
 }
 
-
-
-@media(max-width:766px) {
+@media (max-width: 766px) {
   .card {
     box-shadow: none;
   }
