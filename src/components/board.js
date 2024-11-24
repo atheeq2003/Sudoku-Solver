@@ -169,51 +169,59 @@ export default class Board {
 
 
   solveBoard = async (row = 0, column = 0) => {
-    // Step 1: Base case
+    refreshButton.setAttribute("disabled",true);
     const [x, y] = this.getFirstUnsolved(row, column);
     if (x === false) {
       this.solved = true;
       return true;
     }
-
+  
     // Step 2: Solve
     const s = getSector(x, y);
     let solved = false;
     for (let i = 1; i <= 9; i += 1) {
-      if (!this.row.checkIfIn(x, i)
-      && !this.column.checkIfIn(y, i)
-      && !this.sector.checkIfIn(s, i)) {
+      if (!this.row.checkIfIn(x, i) && !this.column.checkIfIn(y, i) && !this.sector.checkIfIn(s, i)) {
         solved = await this.tryOne(x, y, s, i);
       }
-
+  
       if (solved) {
+        refreshButton.removeAttribute("disabled",true);
         break;
       }
     }
-
+  
     // Step 3: Return result
     return solved;
-  }
-
+  };
+  
   setUpBeforeAndSolve = async ({ target }) => {
     // Clean up board in case we are solving again
     this.cleanUp();
-
+  
     // Set memo and solve board
     if (this.createNewMemo()) {
-      target.setAttribute('disabled', true);
+      // Disable the Solve button to prevent multiple clicks during solving
+      target.setAttribute("disabled", true);
+  
+      console.log("Starting to solve...");
+  
+      // Solve the board asynchronously
       await this.solveBoard();
-      target.removeAttribute('disabled');
-
-      // Check if board was successfully solved
+  
+      console.log("Finished solving...");
+  
+      // Re-enable the Solve button once solving is finished
+      target.removeAttribute("disabled");
+  
+      // Check if the board was successfully solved
       if (!this.solved) {
-        alert('Board not solvable');
+        alert("Board not solvable");
       } else {
-        alert('Solved');
+        alert("Solved");
       }
     }
-  }
-
+  };
+  
   handleInput = (event) => {
     const { target: element } = event;
     const { innerText: value, id } = element;
