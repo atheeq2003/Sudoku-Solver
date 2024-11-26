@@ -1,33 +1,49 @@
+<<<<<<< HEAD
+=======
+  ![Sudoku-Solver](https://github.com/user-attachments/assets/5aa6e3e6-e58d-4fc8-a199-ef193db553d3)
+
+>>>>>>> 409832bd9b746880d5420980dfc372021b5f9c17
 # Sudoku Solver and Visualizer
 
-A web-based Sudoku solver and visualizer that combines the power of backtracking algorithms with an interactive interface. Solve puzzles step-by-step, play manually, or watch the solving process in real-time!
+Sudoku Solver Visualizer is an interactive web application that combines the power of algorithms and visualizations to solve Sudoku puzzles dynamically. Designed for both beginners and enthusiasts, this project not only solves puzzles but also offers insights into the solving process using a backtracking algorithm.
+
+
+## Live Demo
+- Deployed page -> https://atheeq2003.github.io/Sudoku-Solver/
 
 ## Overview
 
-### Interactive Sudoku Board:
+#### Interactive Sudoku Board:
 
 - Input your puzzle directly or select a preloaded puzzle from the dropdown.
 - Reset or clear the board anytime to start fresh.
 
-### Solver Visualizer:
+#### Solver Visualizer:
 
 - Watch as the Sudoku is solved step-by-step using recursive backtracking.
 - Learn how logical algorithms approach complex puzzles.
 
-### Manual Play Option:
+#### Manual Play Option:
 
 - Test your skills by solving the puzzle manually.
 - Use interactive features to assist with tricky moves.
 
+<<<<<<< HEAD
 ### Custom Speed Control
 
 - Adjust visualization speed (in milliseconds) for a tailored experience.
 
 ### Preset Boards
 
+=======
+#### Custom Speed Control
+- Adjust visualization speed (in milliseconds) for a tailored experience.
+
+#### Preset Boards
+>>>>>>> 409832bd9b746880d5420980dfc372021b5f9c17
 - Includes easy, intermediate, and difficult puzzles.
 
-### Learn Sudoku Concepts:
+#### Learn Sudoku Concepts:
 
 - Understand the logic behind Sudoku as you interact with the solver.
 - Visualize how backtracking efficiently tackles even the toughest puzzles.
@@ -40,19 +56,30 @@ A web-based Sudoku solver and visualizer that combines the power of backtracking
 4. Quickly reset the board for a fresh start using the Clear or Reset options.
 
 ## Tech Stack
+<<<<<<< HEAD
 
 ### Frontend:
 
+=======
+#### Frontend:
+>>>>>>> 409832bd9b746880d5420980dfc372021b5f9c17
 - HTML5: For structuring the Sudoku Solver interface.
 - CSS3: For styling the board and controls with a clean, modern design.
 - JavaScript (ES6+): For implementing interactive logic and the backtracking algorithm.
 
+<<<<<<< HEAD
 ### Development Tool:
 
 - Vite: Lightning-fast build tool and development server.
 
 ### Algorithm:
 
+=======
+#### Development Tool:
+- Vite: Lightning-fast build tool and development server.
+
+#### Algorithm:
+>>>>>>> 409832bd9b746880d5420980dfc372021b5f9c17
 - Recursive Backtracking: Used to efficiently solve the Sudoku puzzle.
 
 ## Installation
@@ -80,6 +107,7 @@ To run this project locally, follow these steps:
 
 ![Sudoku-Solver](https://github.com/user-attachments/assets/5aa6e3e6-e58d-4fc8-a199-ef193db553d3)
 
+<<<<<<< HEAD
 ## For Live Demo
 
 - Deployed page -> https://atheeq2003.github.io/Sudoku-Solver/
@@ -105,3 +133,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+=======
+
+>>>>>>> 409832bd9b746880d5420980dfc372021b5f9c17
