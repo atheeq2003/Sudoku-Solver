@@ -6,28 +6,28 @@ Sudoku Solver Visualizer is an interactive web application that combines the pow
 
 ## Overview
 
-### Interactive Sudoku Board:
+#### Interactive Sudoku Board:
 
 - Input your puzzle directly or select a preloaded puzzle from the dropdown.
 - Reset or clear the board anytime to start fresh.
 
-### Solver Visualizer:
+#### Solver Visualizer:
 
 - Watch as the Sudoku is solved step-by-step using recursive backtracking.
 - Learn how logical algorithms approach complex puzzles.
 
-### Manual Play Option:
+#### Manual Play Option:
 
 - Test your skills by solving the puzzle manually.
 - Use interactive features to assist with tricky moves.
 
-### Custom Speed Control
+#### Custom Speed Control
 - Adjust visualization speed (in milliseconds) for a tailored experience.
 
-### Preset Boards
+#### Preset Boards
 - Includes easy, intermediate, and difficult puzzles.
 
-### Learn Sudoku Concepts:
+#### Learn Sudoku Concepts:
 
 - Understand the logic behind Sudoku as you interact with the solver.
 - Visualize how backtracking efficiently tackles even the toughest puzzles.
