@@ -42,15 +42,15 @@ Sudoku Solver Visualizer is an interactive web application that combines the pow
 
 
 ## Tech Stack
-### Frontend:
+#### Frontend:
 - HTML5: For structuring the Sudoku Solver interface.
 - CSS3: For styling the board and controls with a clean, modern design.
 - JavaScript (ES6+): For implementing interactive logic and the backtracking algorithm.
 
-### Development Tool:
+#### Development Tool:
 - Vite: Lightning-fast build tool and development server.
 
-### Algorithm:
+#### Algorithm:
 - Recursive Backtracking: Used to efficiently solve the Sudoku puzzle.
 
 ## Installation
@@ -78,6 +78,6 @@ To run this project locally, follow these steps:
     
 ![Sudoku-Solver](https://github.com/user-attachments/assets/5aa6e3e6-e58d-4fc8-a199-ef193db553d3)
 
-## For Live Demo
+## Live Demo
 - Deployed page -> https://atheeq2003.github.io/Sudoku-Solver/
 
