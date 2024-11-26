@@ -2,7 +2,7 @@
 
 # Sudoku Solver and Visualizer
 
-A web-based Sudoku solver and visualizer that combines the power of backtracking algorithms with an interactive interface. Solve puzzles step-by-step, play manually, or watch the solving process in real-time!
+Sudoku Solver Visualizer is an interactive web application that combines the power of algorithms and visualizations to solve Sudoku puzzles dynamically. Designed for both beginners and enthusiasts, this project not only solves puzzles but also offers insights into the solving process using a backtracking algorithm.
 
 ## Overview
 
