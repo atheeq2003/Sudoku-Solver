@@ -4,6 +4,10 @@
 
 Sudoku Solver Visualizer is an interactive web application that combines the power of algorithms and visualizations to solve Sudoku puzzles dynamically. Designed for both beginners and enthusiasts, this project not only solves puzzles but also offers insights into the solving process using a backtracking algorithm.
 
+
+## Live Demo
+- Deployed page -> https://atheeq2003.github.io/Sudoku-Solver/
+
 ## Overview
 
 #### Interactive Sudoku Board:
@@ -78,6 +82,4 @@ To run this project locally, follow these steps:
     
 ![Sudoku-Solver](https://github.com/user-attachments/assets/5aa6e3e6-e58d-4fc8-a199-ef193db553d3)
 
-## Live Demo
-- Deployed page -> https://atheeq2003.github.io/Sudoku-Solver/
 
