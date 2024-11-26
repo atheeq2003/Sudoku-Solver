@@ -1,3 +1,4 @@
+![Sudoku-Solver](https://github.com/user-attachments/assets/5aa6e3e6-e58d-4fc8-a199-ef193db553d3)
 
 # Sudoku Solver and Visualizer
 
