@@ -7,7 +7,7 @@
 
 ---
 
-## 🌐 Live Demo  
+## 🌐 Deployed App  
 ➡️ **[Explore the Deployed App Here](https://atheeq2003.github.io/Sudoku-Solver/)**  
 
 ---
